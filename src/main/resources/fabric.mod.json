@@ -33,6 +33,9 @@
 		],
 		"voicechat": [
 			"com.sp.sounds.voicechat.BackroomsVoicechatPlugin"
+		],
+		"mixinsquared": [
+			"com.sp.SPBRevampedMixinCanceller"
 		]
 	},
 	"custom": {
@@ -67,14 +70,5 @@
 		"mod-menu": "*"
 	},
 	"breaks": {
-		"sodium": "*",
-		"create": "*",
-		"iris": "*",
-		"optifine": "*",
-		"lithium": "*",
-		"phosphor": "*",
-		"starlight": "*",
-		"indium": "*",
-		"modern_industrialization": "*"
 	}
 }

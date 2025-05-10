@@ -24,18 +24,22 @@ public interface MutableUniformAccessMixin {
 
     @Inject(method = "applyRenderSystem", at = @At("TAIL"))
     default void applyRenderSystem(CallbackInfo ci) {
-        this.setVector("cameraBobOffset", SPBRevampedClient.cameraBobOffset);
+        if(SPBRevampedClient.cameraBobOffset != null) {
+            this.setVector("cameraBobOffset", SPBRevampedClient.cameraBobOffset);
+        }
 
         MinecraftClient client = MinecraftClient.getInstance();
         Window window = client.getWindow();
         this.setVector("ScreenSize", window.getWidth(), window.getHeight());
 
         SpriteAtlasTexture texture = MinecraftClient.getInstance().getBakedModelManager().getAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE);
-        this.setFloat("atlasAspectRatio",(float) texture.getHeight() / texture.getWidth());
+        if(texture != null) {
+            this.setFloat("atlasAspectRatio", (float) texture.getHeight() / texture.getWidth());
+        }
 
         if(client.world != null && SPBRevampedClient.camera != null) {
             this.setFloat("sunsetTimer", PoolroomsDayCycle.getDayTime(client.world));
-            SPBRevampedClient.setShadowUniforms((MutableUniformAccess) (Object) this, client.world);
+            SPBRevampedClient.setShadowUniforms((MutableUniformAccess) this, client.world);
 
             this.setFloat("warpAngle", SPBRevampedClient.getWarpTimer(client.world));
         }
